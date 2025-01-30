@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Your Knowledge - Types of Accounts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: left;
+        }
+        #quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #quiz-container h2 {
+            margin-bottom: 20px;
+        }
+        .question {
+            margin: 15px 0;
+            display: none;
+        }
+        .question input {
+            margin-right: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            display: none;
+        }
+        #result p {
+            font-size: 18px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            #quiz-container {
+                width: 100%;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h2>Test Your Knowledge - You have 10 questions!</h2>
+
+    <button id="startQuizBtn">Start Quiz</button>
+
+    <div id="questions">
+        <div class="question">
+            <p>Which of the following is a Personal Account?</p>
+            <label><input type="radio" name="q1" value="a"> Bank</label><br>
+            <label><input type="radio" name="q1" value="b"> Capital</label><br>
+            <label><input type="radio" name="q1" value="c"> Accounts Payable</label><br>
+        </div>
+
+        <div class="question">
+            <p>Which of the following is a Real Account?</p>
+            <label><input type="radio" name="q2" value="a"> Cash</label><br>
+            <label><input type="radio" name="q2" value="b"> Rent Expense</label><br>
+            <label><input type="radio" name="q2" value="c"> Salaries Payable</label><br>
+        </div>
+
+        <div class="question">
+            <p>Nominal accounts typically track:</p>
+            <label><input type="radio" name="q3" value="a"> Assets</label><br>
+            <label><input type="radio" name="q3" value="b"> Revenue and Expenses</label><br>
+            <label><input type="radio" name="q3" value="c"> Liabilities</label><br>
+        </div>
+
+        <div class="question">
+            <p>What is the basic rule for Personal Accounts?</p>
+            <label><input type="radio" name="q4" value="a"> Debit the Receiver, Credit the Giver</label><br>
+            <label><input type="radio" name="q4" value="b"> Debit all Expenses, Credit all Revenues</label><br>
+            <label><input type="radio" name="q4" value="c"> Debit all Assets, Credit all Liabilities</label><br>
+        </div>
+
+        <div class="question">
+            <p>Which account type tracks the value of physical assets?</p>
+            <label><input type="radio" name="q5" value="a"> Nominal Accounts</label><br>
+            <label><input type="radio" name="q5" value="b"> Personal Accounts</label><br>
+            <label><input type="radio" name="q5" value="c"> Real Accounts</label><br>
+        </div>
+
+        <div class="question">
+            <p>Which account type is related to expenses like rent, wages, and utility costs?</p>
+            <label><input type="radio" name="q6" value="a"> Personal Accounts</label><br>
+            <label><input type="radio" name="q6" value="b"> Real Accounts</label><br>
+            <label><input type="radio" name="q6" value="c"> Nominal Accounts</label><br>
+        </div>
+
+        <div class="question">
+            <p>What does a Real Account usually represent?</p>
+            <label><input type="radio" name="q7" value="a"> Customers or Vendors</label><br>
+            <label><input type="radio" name="q7" value="b"> Income or Expenses</label><br>
+            <label><input type="radio" name="q7" value="c"> Physical Assets like Buildings or Cash</label><br>
+        </div>
+
+        <div class="question">
+            <p>Which of these accounts would be closed at the end of the accounting period?</p>
+            <label><input type="radio" name="q8" value="a"> Personal Accounts</label><br>
+            <label><input type="radio" name="q8" value="b"> Real Accounts</label><br>
+            <label><input type="radio" name="q8" value="c"> Nominal Accounts</label><br>
+        </div>
+
+        <div class="question">
+            <p>Which account type is usually found in a company's balance sheet?</p>
+            <label><input type="radio" name="q9" value="a"> Real Accounts</label><br>
+            <label><input type="radio" name="q9" value="b"> Personal Accounts</label><br>
+            <label><input type="radio" name="q9" value="c"> Nominal Accounts</label><br>
+        </div>
+
+        <div class="question">
+            <p>Which of the following is a Nominal Account?</p>
+            <label><input type="radio" name="q10" value="a"> Accounts Receivable</label><br>
+            <label><input type="radio" name="q10" value="b"> Rent Income</label><br>
+            <label><input type="radio" name="q10" value="c"> Land</label><br>
+        </div>
+
+        <button id="submitBtn" style="display:none;">Submit</button>
+        <button id="retakeQuizBtn" style="display:none;" onclick="retakeQuiz()">Retake Quiz</button>
+    </div>
+
+    <div id="result" style="display:none;">
+        <p id="score"></p>
+    </div>
+</div>
+
+<script>
+    const startQuizBtn = document.getElementById('startQuizBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultDiv = document.getElementById('result');
+    const scoreText = document.getElementById('score');
+    const questions = document.querySelectorAll('.question');
+    const retakeQuizBtn = document.getElementById('retakeQuizBtn');
+
+    const correctAnswers = {
+        q1: 'a',
+        q2: 'a',
+        q3: 'b',
+        q4: 'a',
+        q5: 'c',
+        q6: 'c',
+        q7: 'c',
+        q8: 'c',
+        q9: 'a',
+        q10: 'b'
+    };
+
+    let score = 0;
+
+    startQuizBtn.addEventListener('click', () => {
+        startQuizBtn.style.display = 'none';
+        questions.forEach(question => question.style.display = 'block');
+        submitBtn.style.display = 'inline-block';
+    });
+
+    submitBtn.addEventListener('click', () => {
+        score = 0;
+        questions.forEach(question => {
+            const selectedAnswer = question.querySelector('input:checked');
+            const questionName = question.querySelector('input').name;
+            if (selectedAnswer && selectedAnswer.value === correctAnswers[questionName]) {
+                score++;
+            }
+        });
+        scoreText.textContent = `You got ${score} out of ${questions.length}`;
+        resultDiv.style.display = 'block';
+        submitBtn.style.display = 'none';
+        retakeQuizBtn.style.display = 'inline-block';
+    });
+
+    function retakeQuiz() {
+        score = 0;
+        resultDiv.style.display = 'none';
+        questions.forEach(question => {
+            question.style.display = 'none';
+            question.querySelectorAll('input').forEach(input => {
+                input.checked = false;
+            });
+        });
+        startQuizBtn.style.display = 'inline-block';
+        retakeQuizBtn.style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
